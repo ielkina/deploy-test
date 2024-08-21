@@ -55,4 +55,4 @@ jobs:
       # Deploy
       # cd > папка app
       # - run: cd app && rsync -e "ssh -p 20022 -i $HOME/.ssh/key -o StrictHostKeyChecking=no" --archive --compress --delete . адресс_хоста (можно узнать у потдержки хостинга)
-      - run: rsync -e "ssh -p 20022
+      - run: rsync -e "ssh -p 20022 -i $HOME/.ssh/key -o StrictHostKeyChecking=no" --archive --compress --delete . https://ielkina.github.io/deploy-test/
