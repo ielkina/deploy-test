@@ -1,0 +1,58 @@
+# Название
+
+# name: Build and deploy to GitHub Pages
+name: Deploy
+
+# Когда запускать deploy
+
+# on:
+#   push:
+#     branches: [main]
+
+on: 
+  push:
+    branches: 
+      - main
+
+
+# Делает работу 
+
+
+# jobs:
+#   build-and-deploy:
+#     runs-on: ubuntu-latest
+#     steps:
+#       - name: Checkout 🛎️
+#         uses: actions/checkout@v2.3.1
+
+#       - name: Install and Build 🔧
+#         run: |
+#           npm ci
+#           npm run build
+
+#       - name: Deploy 🚀
+#         uses: JamesIves/github-pages-deploy-action@4.1.0
+#         with:
+#           branch: gh-pages
+#           folder: dist
+
+jobs:
+  deploy: 
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      # Setup key
+      - run: set -eu
+      - run: mkdir "@HOME/.ssh"
+      - run: echo "${{secrets.key}}" > "$HOME/.ssh/key"
+      - run: chmod 600 "$HOME/.ssh/key"
+      # Build
+      # Команды для работы со сборками
+      # Установка пакетов
+      # - run: npm ci
+      # Запуск разработки
+      # - run: npm run build
+      # Deploy
+      # cd > папка app
+      # - run: cd app && rsync -e "ssh -p 20022 -i $HOME/.ssh/key -o StrictHostKeyChecking=no" --archive --compress --delete . адресс_хоста (можно узнать у потдержки хостинга)
+      - run: rsync -e "ssh -p 20022
